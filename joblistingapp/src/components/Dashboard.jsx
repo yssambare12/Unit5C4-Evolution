@@ -23,7 +23,7 @@ export const Dashboard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch(`http://localhost:3004/job`, {
+        fetch(`http://localhost:3000/job`, {
             method: 'POST',
             body: JSON.stringify(form),
             headers: {
