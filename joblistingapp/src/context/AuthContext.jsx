@@ -4,7 +4,7 @@ export const AuthContext = createContext({ token: "", handleToken: () => { } });
 
 export const AuthContextProvider = ({ children }) => {
 
-    const [token, setToken] = useState("");
+    const [token, setToken] = useState("ababab");
 
     const handleToken = (token) => {
         setToken(token);

@@ -1,0 +1,13 @@
+{
+    "job": [
+        {
+            "companyName": "Google",
+            "jobTitle": "Developer",
+            "salaryRange": "100000",
+            "jobDescription": "job",
+            "location": "Pune",
+            "jobType": "Remote",
+            "id": 1
+        }
+    ]
+}

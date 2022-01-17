@@ -1,5 +1,6 @@
-import { Button, Container, Heading, Input, VStack } from "@chakra-ui/react";
+import { Button, Container, Heading, Input, Select, useToast, VStack } from "@chakra-ui/react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Dashboard = () => {
 
@@ -13,6 +14,8 @@ export const Dashboard = () => {
     }
 
     const [form, setForm] = useState(initState);
+    const toast = useToast();
+    const navigate = useNavigate();
 
     const handleChange = ({ target: { name, value } }) => {
         setForm({ ...form, [name]: value })
@@ -20,6 +23,29 @@ export const Dashboard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        fetch(`http://localhost:3004/job`, {
+            method: 'POST',
+            body: JSON.stringify(form),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                console.log(res);
+                toast({
+                    title: 'Job Added',
+                    status: 'success',
+                    duration: 5000,
+                    position: 'top',
+                    isClosable: true,
+                })
+                navigate('/');
+
+            })
+            .catch((err) => {
+                console.log(err);
+            })
 
 
     }
@@ -36,7 +62,10 @@ export const Dashboard = () => {
                         <Input onChange={handleChange} name='salaryRange' type='text' placeholder="salary range" />
                         <Input onChange={handleChange} name='jobDescription' type='text' placeholder="Job description" />
                         <Input onChange={handleChange} name='location' type='text' placeholder="Location" />
-                        <Input onChange={handleChange} name='jobType ' type='text' placeholder="Job type " />
+                        <Select onChange={handleChange} name='jobType' placeholder='Job type'>
+                            <option value='Remote'>Remote</option>
+                            <option value='Office'>Office</option>
+                        </Select>
                         <Button w={'100%'} colorScheme={'telegram'} type="submit">Submit</Button>
                     </VStack>
                 </form>

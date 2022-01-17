@@ -9,19 +9,18 @@ export const Navbar = () => {
 
     return (
         <>
-            <Flex h={'60px'} bg={'#F5F5F5'}>
+            <Flex h={'50px'}>
                 <Center>
-                    <Heading ms={4}>Job Site</Heading>
+                    <Heading ms={4}>Job Listing Site</Heading>
                 </Center>
                 <Spacer />
                 <Center>
-                    <Button mr={2} colorScheme={'telegram'}><Link to={'/'}>Home</Link></Button>
-                    <Button mr={2} colorScheme={'telegram'}><Link to={'/dashboard'}>Dashboard</Link></Button>
+                    <Button mr={2} ><Link to={'/'}>Home</Link></Button>
+                    <Button mr={2} ><Link to={'/dashboard'}>Dashboard</Link></Button>
                     <Link to={'/login'}>
                         <Button
                             onClick={!token ? () => { handleToken("") } : undefined}
                             mr={4}
-                            colorScheme={'telegram'}
                         >
                             {!token ? "Login" : "Logout"}
                         </Button>
